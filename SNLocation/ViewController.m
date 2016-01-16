@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-
+#import "SNLocationManager.h"
 @interface ViewController ()
-
+@property (nonatomic, weak) IBOutlet UILabel * resultLabel;
 @end
 
 @implementation ViewController
@@ -17,6 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)fetchLocation:(id)sender {
+    
+    [[SNLocationManager shareLocationManager] startUpdatingLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
+        _resultLabel.text = placemark.locality;
+    } andFailure:^(CLRegion *region, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

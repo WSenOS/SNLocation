@@ -15,6 +15,7 @@
 		4BA9F1441C4A2261000EE633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9F1421C4A2261000EE633 /* LaunchScreen.storyboard */; };
 		4BA9F14F1C4A2261000EE633 /* SNLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA9F14E1C4A2261000EE633 /* SNLocationTests.m */; };
 		4BA9F15A1C4A2261000EE633 /* SNLocationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA9F1591C4A2261000EE633 /* SNLocationUITests.m */; };
+		4BA9F16A1C4A227F000EE633 /* SNLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA9F1691C4A227F000EE633 /* SNLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		4BA9F1551C4A2261000EE633 /* SNLocationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNLocationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA9F1591C4A2261000EE633 /* SNLocationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNLocationUITests.m; sourceTree = "<group>"; };
 		4BA9F15B1C4A2261000EE633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BA9F1681C4A227F000EE633 /* SNLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLocationManager.h; sourceTree = "<group>"; };
+		4BA9F1691C4A227F000EE633 /* SNLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		4BA9F1331C4A2261000EE633 /* SNLocation */ = {
 			isa = PBXGroup;
 			children = (
+				4BA9F1671C4A227F000EE633 /* SNLocation */,
 				4BA9F1371C4A2261000EE633 /* AppDelegate.h */,
 				4BA9F1381C4A2261000EE633 /* AppDelegate.m */,
 				4BA9F13A1C4A2261000EE633 /* ViewController.h */,
@@ -138,6 +142,15 @@
 				4BA9F15B1C4A2261000EE633 /* Info.plist */,
 			);
 			path = SNLocationUITests;
+			sourceTree = "<group>";
+		};
+		4BA9F1671C4A227F000EE633 /* SNLocation */ = {
+			isa = PBXGroup;
+			children = (
+				4BA9F1681C4A227F000EE633 /* SNLocationManager.h */,
+				4BA9F1691C4A227F000EE633 /* SNLocationManager.m */,
+			);
+			path = SNLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +286,7 @@
 				4BA9F13C1C4A2261000EE633 /* ViewController.m in Sources */,
 				4BA9F1391C4A2261000EE633 /* AppDelegate.m in Sources */,
 				4BA9F1361C4A2261000EE633 /* main.m in Sources */,
+				4BA9F16A1C4A227F000EE633 /* SNLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
