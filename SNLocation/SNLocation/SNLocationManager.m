@@ -44,7 +44,7 @@ static SNLocationManager * _manager = nil;
     return _locationManager;
 }
 
-- (void)startUpdatingLocationWithSuccess:(UpdateLocationSuccessBlock)success andFailure:(UpdateLocationErrorBlock)error {
+- (void)sn_startUpdatingLocationWithSuccess:(UpdateLocationSuccessBlock)success andFailure:(UpdateLocationErrorBlock)error {
     
     _successBlock = [success copy];
     _errorBlock = [error copy];
@@ -105,6 +105,38 @@ static SNLocationManager * _manager = nil;
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
     _errorBlock(region,error);
+}
+
+- (void)sn_geocodeAddress:(NSString *)address andSuccess:(GeocodeSuccessBlock)success andFailure:(GeocodeFailureBlock)failure {
+    if (address == nil || [address isEqualToString:@""]) {
+        return;
+    }
+    CLGeocoder * geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"这个地址很坑爹啊，找不到");
+            failure(error);
+        } else {
+            CLPlacemark * placemark = placemarks.firstObject;
+            success(placemark.location,placemark,address);
+        }
+    }];
+}
+
+- (void)sn_regeocodeLocation:(CLLocation *)location andSuccess:(RegeocodeSuccessBlock)success andFailure:(RegeocodeFailureBlock)failure {
+    if (!location) {
+        return;
+    }
+    CLGeocoder * geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"木有找到");
+            failure(error);
+        } else {
+            CLPlacemark * placemark = placemarks.firstObject;
+            success(location,placemark);
+        }
+    }];
 }
 
 @end

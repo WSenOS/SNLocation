@@ -16,8 +16,15 @@
  * NSLocationWhenInUseUsageDescription String 使用应用程序期间，可以使用定位服务
  */
 
+//定位
 typedef void(^UpdateLocationSuccessBlock) (CLLocation * location, CLPlacemark * placemark);
 typedef void(^UpdateLocationErrorBlock) (CLRegion * region, NSError * error);
+//地理编码:地名—>经纬度坐标
+typedef void(^GeocodeSuccessBlock) (CLLocation * location, CLPlacemark * placmark, NSString * geocodingAddressName);
+typedef void(^GeocodeFailureBlock) (NSError * error);
+//反地理编码:经纬度坐标—>地名
+typedef void(^RegeocodeSuccessBlock) (CLLocation * regeocodeLocation, CLPlacemark * placmark);
+typedef void(^RegeocodeFailureBlock) (NSError * error);
 
 @interface SNLocationManager : NSObject
 
@@ -40,7 +47,14 @@ typedef void(^UpdateLocationErrorBlock) (CLRegion * region, NSError * error);
  */
 @property (nonatomic, assign) CGFloat distanceFilter;
 
+
 //开始定位
-- (void)startUpdatingLocationWithSuccess:(UpdateLocationSuccessBlock)success andFailure:(UpdateLocationErrorBlock)error;
+- (void)sn_startUpdatingLocationWithSuccess:(UpdateLocationSuccessBlock)success andFailure:(UpdateLocationErrorBlock)error;
+
+//根据地址得到经纬度
+- (void)sn_geocodeAddress:(NSString *)address andSuccess:(GeocodeSuccessBlock)success andFailure:(GeocodeFailureBlock)failure;
+
+//根据经纬度得到地址 39.90498900,+116.40528500
+- (void)sn_regeocodeLocation:(CLLocation *)location andSuccess:(RegeocodeSuccessBlock)success andFailure:(RegeocodeFailureBlock)failure;
 
 @end
